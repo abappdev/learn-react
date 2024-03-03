@@ -32,9 +32,7 @@ function App() {
   return (
     <div>
       <button onClick={addTodo}>Add randomly</button>
-      {todos.map(function (todo) {
-        return <TodoItem title={todo.title} description={todo.description} />;
-      })}
+      <TodoItem todos={todos} />
     </div>
   );
 }
@@ -42,11 +40,20 @@ function App() {
 function TodoItem(props) {
   return (
     <div>
-      <h1>hi {props.title}</h1>
-      <h2>{props.description}</h2>
-      {/* <h3>{props.is_completed}</h3> */}
+      {props.todos.map(function (todo) {
+        return (<ToDo todo={todo} />)
+      })}
     </div>
   );
+}
+
+function ToDo(props) {
+  return (<div style={{ backgroundColor: "grey", padding: "1rem", margin: "1rem", width: "50rem", borderRadius: "1rem" }}>
+    ----------------------------------------------------------------------------------------------------
+    <h1 style={{ color: "white" }}>Title: {props.todo.title}</h1>
+    <h4>Description: {props.todo.description}</h4>
+    <h3>{props.todo.is_completed}</h3>
+  </div>);
 }
 
 export default App
