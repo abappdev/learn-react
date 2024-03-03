@@ -8,35 +8,45 @@ import './App.css'
 function App() {
   const [todos, setTodos] = useState([{
     title: "Goto gym",
-    discription: "Goto gym 7-8.30 AM",
+    description: "Goto gym 7-8.30 AM",
     is_completed: false
   }, {
     title: "Morning work",
-    discription: "Bath and breakfast 8.30 to 9.15 AM",
+    description: "Bath and breakfast 8.30 to 9.15 AM",
     is_completed: true
   }, {
     title: "Login for work",
-    discription: "9.15 AM",
+    description: "9.15 AM",
     is_completed: false
   }]);
 
+
+  function addTodo() {
+    setTodos([...todos, {
+      title: "new todo",
+      description: "This is a new Todo",
+      is_completed: false
+    }])
+  }
+
   return (
     <div>
-      {JSON.stringify(todos)}
-      {/* <TodoItem title="Hello" ></TodoItem> */}
+      <button onClick={addTodo}>Add randomly</button>
+      {todos.map(function (todo) {
+        return <TodoItem title={todo.title} description={todo.description} />;
+      })}
     </div>
-  )
+  );
 }
 
 function TodoItem(props) {
-  //   function onClickHandler() {
-  //     props.setCount(p rops.count + 1);
-  //   }
-  return (<div>
-    <h1>{props.title}</h1>
-    <h2>{props.discription}</h2>
-    <h3>{props.is_completed}</h3>
-  </div>)
+  return (
+    <div>
+      <h1>hi {props.title}</h1>
+      <h2>{props.description}</h2>
+      {/* <h3>{props.is_completed}</h3> */}
+    </div>
+  );
 }
 
 export default App
